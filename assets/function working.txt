@@ -38,4 +38,5 @@ This tells Streamlit how to display the number.
 7.(max_retries)This retry continues until:
 You finally get the ack, or
 You hit the max retry limit (max_retries, default 5).
+
 If retries exceed the limit, it raises a TimeoutError and stops sending.
