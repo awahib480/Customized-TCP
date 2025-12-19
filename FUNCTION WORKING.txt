@@ -1,0 +1,41 @@
+1.uploaded_file = st.file_uploader("Choose a file to send", type=None):
+st.file_uploader() creates a file upload button in your Streamlit app.
+The label "Choose a file to send" is the text shown next to the button.
+When a user uploads a file, that file is stored in the variable uploaded_file.
+
+2️.temp_path = os.path.join(".", uploaded_file.name)
+os.path.join(".", uploaded_file.name) combines two parts into a full file path.
+"." means the current folder.
+uploaded_file.name is the name of the uploaded file (like photo.jpg or data.csv)
+look like this (./photo.jpg)
+
+3️⃣ with open(temp_path, "wb") as f:
+This opens a new empty file with that name (temp_path)
+so we can save the uploaded data into it.
+"wb" means write in binary mode, which is needed for all types of files (images, PDFs, etc.).
+The with keyword automatically closes the file after writing.
+
+4️⃣ f.write(uploaded_file.getbuffer())
+uploaded_file.getbuffer() gives the raw bytes of the uploaded file.
+f.write(...) writes those bytes into the new file we just opened.
+
+5️⃣ with st.spinner(f"Sending '{uploaded_file.name}' to {dest_ip}:{port}..."):
+st.spinner() shows a temporary loading spinner in the Streamlit app while the code inside it runs.
+The text inside f"..." is shown to the user (like a “please wait” message).
+Example:Sending 'photo.jpg' to 192.168.0.10:8080...
+
+6.port = st.number_input("Enter Port Number", value=9999, step=1, format="%d")
+value=9999
+This sets the default value that appears in the box when the app first loads.
+So by default, it shows 9999, but the user can change it.
+step=1
+This defines how much the number changes when you click the little up/down arrows next to the box.
+So with step=1, each click increases or decreases the number by 1.
+format="%d"
+This tells Streamlit how to display the number.
+"%d" means show it as an integer (whole number) — no decimals.
+
+7.(max_retries)This retry continues until:
+You finally get the ack, or
+You hit the max retry limit (max_retries, default 5).
+If retries exceed the limit, it raises a TimeoutError and stops sending.
