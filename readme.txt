@@ -1,5 +1,4 @@
-Working Procedure
-*****************
+* Working Procedure *
 1. Run the main file "app.py" using "streamlit run app.py" from the command prompt.
 2. On web page, select Sender mode on one system and Receiver mode on the other.
 3. Set the IP Number and Port No. of the receiver.
